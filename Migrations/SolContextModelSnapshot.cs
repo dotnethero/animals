@@ -45,19 +45,13 @@ namespace Sol.Migrations
 
             modelBuilder.Entity("Sol.Data.AnimalRelation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("PredatorId")
                         .HasColumnType("int");
 
                     b.Property<int>("PreyId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PredatorId", "PreyId");
 
                     b.HasIndex("PredatorId");
 

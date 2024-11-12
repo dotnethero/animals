@@ -12,6 +12,7 @@ public class SolContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new AnimalConfiguration());
+        builder.ApplyConfiguration(new AnimalRelationConfiguration());
         builder.ApplyConfiguration(new HumanConfiguration());
     }
 }

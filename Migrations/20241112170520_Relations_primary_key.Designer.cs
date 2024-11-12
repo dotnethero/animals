@@ -12,8 +12,8 @@ using Sol.Data;
 namespace Sol.Migrations
 {
     [DbContext(typeof(SolContext))]
-    [Migration("20241112163124_Init")]
-    partial class Init
+    [Migration("20241112170520_Relations_primary_key")]
+    partial class Relations_primary_key
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,19 +48,13 @@ namespace Sol.Migrations
 
             modelBuilder.Entity("Sol.Data.AnimalRelation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("PredatorId")
                         .HasColumnType("int");
 
                     b.Property<int>("PreyId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PredatorId", "PreyId");
 
                     b.HasIndex("PredatorId");
 

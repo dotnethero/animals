@@ -5,7 +5,7 @@
 namespace Sol.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Relations_primary_key : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,14 +27,12 @@ namespace Sol.Migrations
                 name: "AnimalRelation",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PreyId = table.Column<int>(type: "int", nullable: false),
-                    PredatorId = table.Column<int>(type: "int", nullable: false)
+                    PredatorId = table.Column<int>(type: "int", nullable: false),
+                    PreyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AnimalRelation", x => x.Id);
+                    table.PrimaryKey("PK_AnimalRelation", x => new { x.PredatorId, x.PreyId });
                     table.ForeignKey(
                         name: "FK_AnimalRelation_Animals_PredatorId",
                         column: x => x.PredatorId,
