@@ -8,8 +8,10 @@ await Seed.Run();
 var query =
     from a in context.Set<Animal>()
     where
-        !context.Set<AnimalRelation>().Any(x => x.PredatorId == a.Id || x.PreyId == a.Id) &&
-        !context.Set<Human>().Any(h => h.MostFavoriteAnimalId == a.Id || h.LeastFavoriteAnimalId == a.Id)
+        !context.Set<AnimalRelation>().Any(x => x.PredatorId == a.Id) &&
+        !context.Set<AnimalRelation>().Any(x => x.PreyId == a.Id) &&
+        !context.Set<Human>().Any(h => h.MostFavoriteAnimalId == a.Id) &&
+        !context.Set<Human>().Any(h => h.LeastFavoriteAnimalId == a.Id)
         
     orderby a.Name
     select a.Name;
